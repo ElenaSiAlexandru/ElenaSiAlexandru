@@ -14,7 +14,1098 @@
         }
 
         body {
+            font-family: 'Lato', sans-serif;<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nunta Noastră - Elena & Alexandru</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: 'Lato', sans-serif;
+            color: #333;
+            background-color: #fdfbf7;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .hero .ampersand {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 3rem;
+            margin: 5px 0;
+            animation: fadeIn 2s ease;
+        }
+
+        .hero .date {
+            font-size: 1.3rem;
+            letter-spacing: 5px;
+            margin-top: 20px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .hero .location {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            margin-top: 10px;
+            opacity: 0.9;
+            animation: fadeInUp 1.8s ease;
+        }
+
+        .hero .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* ===== BUTTONS - STIL IULIA & ANTONII ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Inter', 'Lato', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Primary button - auriu cu glow */
+        .btn--primary {
+            background: linear-gradient(135deg, #CBAE7A 0%, #A98A59 100%);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(203, 174, 122, 0.3);
+        }
+
+        .btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(203, 174, 122, 0.5);
+        }
+
+        .btn--primary:active {
+            transform: translateY(-1px);
+        }
+
+        /* Glow effect */
+        .btn--primary.glow::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #CBAE7A, #A98A59, #CBAE7A);
+            border-radius: 50px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            filter: blur(12px);
+        }
+
+        .btn--primary.glow:hover::before {
+            opacity: 0.6;
+        }
+
+        /* Confirm button - outline auriu */
+        .btn--confirm {
+            background: transparent;
+            color: #CBAE7A;
+            border: 2px solid #CBAE7A;
+        }
+
+        .btn--confirm:hover {
+            background: linear-gradient(135deg, #CBAE7A 0%, #A98A59 100%);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(203, 174, 122, 0.4);
+        }
+
+        /* Soft button - pentru hărți etc */
+        .btn--soft {
+            background: rgba(203, 174, 122, 0.1);
+            color: #A98A59;
+            padding: 10px 24px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(203, 174, 122, 0.3);
+        }
+
+        .btn--soft:hover {
+            background: rgba(203, 174, 122, 0.2);
+            border-color: #CBAE7A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(203, 174, 122, 0.2);
+        }
+
+        .btn--soft svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        /* Calendar button */
+        .btn--calendar {
+            background: rgba(34, 34, 34, 0.05);
+            color: #333;
+            border: 1px solid rgba(34, 34, 34, 0.15);
+            padding: 12px 28px;
+            font-size: 0.85rem;
+        }
+
+        .btn--calendar:hover {
+            background: rgba(34, 34, 34, 0.1);
+            border-color: rgba(34, 34, 34, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Submit button */
+        .btn--submit {
+            background: linear-gradient(135deg, #CBAE7A 0%, #A98A59 100%);
+            color: #fff;
+            width: 100%;
+            padding: 16px 40px;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 20px rgba(203, 174, 122, 0.3);
+        }
+
+        .btn--submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(203, 174, 122, 0.5);
+        }
+
+        /* Hero CTA container */
+        .hero__cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            animation: fadeInUp 2s ease;
+        }
+
+        /* Addcal dropdown */
+        .addcal {
+            position: relative;
+        }
+
+        .addcal__menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            overflow: hidden;
+            min-width: 220px;
+            z-index: 100;
+        }
+
+        .addcal__item {
+            display: block;
+            width: 100%;
+            padding: 14px 20px;
+            background: none;
+            border: none;
+            font-family: 'Inter', 'Lato', sans-serif;
+            font-size: 0.9rem;
+            color: #333;
+            cursor: pointer;
+            text-align: left;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .addcal__item:hover {
+            background: rgba(203, 174, 122, 0.1);
+            color: #A98A59;
+        }
+
+        .addcal__item + .addcal__item {
+            border-top: 1px solid #f0ebe0;
+        }
+
+        /* ===== CONFETTI ===== */
+        .confetti-piece {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: confetti-fall 1.2s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+            100% { opacity: 0; transform: translateY(200px) translateX(var(--drift, 30px)) rotate(720deg) scale(0.3); }
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #CBAE7A;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 2px;
+            background: #CBAE7A;
+            margin: 15px auto 30px;
+        }
+
+        section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* ===== COUNTDOWN ===== */
+        .countdown {
+            background: #f5f0e8;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .countdown h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: #fff;
+            padding: 25px 20px;
+            border-radius: 10px;
+            min-width: 100px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .countdown-item .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #CBAE7A;
+            display: block;
+        }
+
+        .countdown-item .label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* ===== FAMILY SECTION ===== */
+        .family-section {
+            background: #fff;
+            padding: 80px 20px;
+        }
+
+        .family-cards {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 30px auto 0;
+        }
+
+        .family-card {
+            background: #fdfbf7;
+            padding: 35px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            flex: 1;
+            min-width: 250px;
+            max-width: 380px;
+            text-align: center;
+            border: 1px solid #f0e8d8;
+            transition: transform 0.3s;
+        }
+
+        .family-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .family-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .family-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .family-card .role {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #CBAE7A;
+            margin-bottom: 12px;
+        }
+
+        .family-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* ===== STORY TIMELINE ===== */
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #CBAE7A;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .timeline-item .timeline-content {
+            width: 45%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-item .timeline-date {
+            font-family: 'Playfair Display', serif;
+            color: #CBAE7A;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .timeline-dot {
+            width: 14px;
+            height: 14px;
+            background: #CBAE7A;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            border: 3px solid #fdfbf7;
+        }
+
+        /* ===== EVENT DETAILS ===== */
+        .events {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .event-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            flex: 1;
+            min-width: 280px;
+            max-width: 380px;
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .event-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .event-card p {
+            font-size: 1rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .event-card .btn--soft {
+            margin-top: 15px;
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s, opacity 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
+        /* ===== RSVP FORM ===== */
+        .rsvp-section {
+            background: #f5f0e8;
+            padding: 80px 20px;
+        }
+
+        .rsvp-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+        }
+
+        .rsvp-form input,
+        .rsvp-form select,
+        .rsvp-form textarea {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            font-family: 'Inter', 'Lato', sans-serif;
+            font-size: 0.95rem;
+            background: #fff;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        .rsvp-form textarea {
+            border-radius: 20px;
+        }
+
+        .rsvp-form input:focus,
+        .rsvp-form select:focus,
+        .rsvp-form textarea:focus {
+            outline: none;
+            border-color: #CBAE7A;
+            box-shadow: 0 0 0 3px rgba(203, 174, 122, 0.15);
+        }
+
+        .rsvp-success {
+            display: none;
+            background: rgba(203, 174, 122, 0.15);
+            color: #A98A59;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 15px;
+            border: 1px solid rgba(203, 174, 122, 0.3);
+            font-family: 'Inter', 'Lato', sans-serif;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer .couple-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        footer .hearts {
+            font-size: 1.5rem;
+            margin: 15px 0;
+        }
+
+        /* ===== REVEAL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .toTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #CBAE7A 0%, #A98A59 100%);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(203, 174, 122, 0.4);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, opacity 0.3s;
+            z-index: 999;
+        }
+
+        .toTop:hover {
+            transform: translateY(-3px);
+        }
+
+        .toTop svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .toTop.show {
+            display: flex;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .ampersand { font-size: 2rem; }
+            nav ul { gap: 15px; padding: 0 10px; }
+            nav a { font-size: 0.75rem; letter-spacing: 2px; }
+            section h2 { font-size: 2rem; }
+
+            .timeline::before { left: 20px; }
+            .timeline-item .timeline-content { width: calc(100% - 50px); margin-left: 50px !important; }
+            .timeline-item .timeline-dot { left: 20px; }
+
+            .btn { padding: 12px 28px; font-size: 0.85rem; }
+            .hero__cta { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Elena</h1>
+        <div class="ampersand">&</div>
+        <h1>Alexandru</h1>
+        <div class="date">24 · IULIE · 2027</div>
+        <div class="location">Iași, România</div>
+
+        <div class="hero__cta">
+            <a href="#povestea" class="btn btn--primary glow">Citește povestea</a>
+            <a href="#rsvp" class="btn btn--confirm">Confirmă prezența</a>
+        </div>
+
+        <a href="#familie" class="scroll-down">&#8595;</a>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <ul>
+            <li><a href="#familie">Familie</a></li>
+            <li><a href="#povestea">Povestea</a></li>
+            <li><a href="#eveniment">Eveniment</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#rsvp">Confirmare</a></li>
+        </ul>
+    </nav>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown">
+        <h2>Numărătoarea inversă</h2>
+        <div class="countdown-timer" id="countdown">
+            <div class="countdown-item">
+                <span class="number" id="days">0</span>
+                <span class="label">Zile</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="hours">0</span>
+                <span class="label">Ore</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="minutes">0</span>
+                <span class="label">Minute</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="seconds">0</span>
+                <span class="label">Secunde</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAMILIA -->
+    <div class="family-section" id="familie">
+        <section style="padding: 0;">
+            <h2>Familiile Noastre</h2>
+            <div class="section-divider"></div>
+            <p>Cu binecuvântarea părinților noștri, vă invităm să ne fiți alături.</p>
+
+            <div class="family-cards">
+                <div class="family-card">
+                    <div class="icon">👰</div>
+                    <div class="role">Părinții Miresei</div>
+                    <h3>Fănica & Catrina</h3>
+                    <p>Părinții care au crescut-o pe Elena cu dragoste și devotament.</p>
+                </div>
+                <div class="family-card">
+                    <div class="icon">🤵</div>
+                    <div class="role">Părinții Mirelui</div>
+                    <h3>Ionel & Gabriela</h3>
+                    <p>Părinții care l-au crescut pe Alexandru cu grijă și înțelepciune.</p>
+                </div>
+                <div class="family-card">
+                    <div class="icon">💒</div>
+                    <div class="role">Nașii</div>
+                    <h3>Va fi anunțat în curând</h3>
+                    <p>Nașii noștri vor fi anunțați în curând. Reveniți pentru actualizări! ✨</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- POVESTEA NOASTRĂ -->
+    <section id="povestea">
+        <h2 class="reveal">Povestea Noastră</h2>
+        <div class="section-divider"></div>
+        <p class="reveal">Fiecare poveste de dragoste este frumoasă, dar a noastră este preferata mea.</p>
+
+        <div class="timeline" style="margin-top: 40px;">
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">24 Martie 2024</div>
+                    <p>Povestea a început în Campus Tudor Vladimirescu.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Iulie 2017</div>
+                    <p>Prima noastră vacanță împreună – Vama Veche.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Ianuarie 2026</div>
+                    <p>Alexandru a îngenuncheat în curtea Palatului Schönbrunn din Viena. Elena a spus DA! 💍</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Iulie 2027</div>
+                    <p>Ziua cea mare – începem o nouă călătorie împreună, pentru totdeauna. ❤️</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENIMENT -->
+    <section id="eveniment">
+        <h2 class="reveal">Detalii Eveniment</h2>
+        <div class="section-divider"></div>
+        <p class="reveal">Vă așteptăm cu drag să ne fiți alături în cea mai importantă zi din viața noastră.</p>
+
+        <div class="events">
+            <div class="event-card reveal">
+                <div class="icon">⛪</div>
+                <h3>Ceremonia Religioasă</h3>
+                <p><strong>Data:</strong> 24 Iulie 2027</p>
+                <p><strong>Ora:</strong> 15:00</p>
+                <p><strong>Locație:</strong> Biserica Banu</p>
+                <p>Strada Lăpușneanu<br>Iași</p>
+                <a class="btn btn--soft" target="_blank" rel="noopener"
+                   href="https://maps.google.com/?q=Biserica+Banu+Iasi+Strada+Lapusneanu">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Vezi pe hartă
+                </a>
+            </div>
+            <div class="event-card reveal">
+                <div class="icon">🎉</div>
+                <h3>Petrecerea</h3>
+                <p><strong>Data:</strong> 24 Iulie 2027</p>
+                <p><strong>Ora:</strong> 19:00</p>
+                <p><strong>Locație:</strong> Hotel Unirea</p>
+                <p>Sala Cuza<br>Iași</p>
+                <a class="btn btn--soft" target="_blank" rel="noopener"
+                   href="https://maps.google.com/?q=Hotel+Unirea+Iasi">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Vezi pe hartă
+                </a>
+            </div>
+        </div>
+
+        <!-- Calendar dropdown -->
+        <div style="margin-top: 30px;" class="reveal">
+            <div class="addcal" style="display: inline-block;">
+                <button class="btn btn--calendar" id="btnCal">Adaugă în calendar ▾</button>
+                <div class="addcal__menu" id="calMenu" hidden>
+                    <button class="addcal__item" id="dlICS">Descarcă fișier ICS</button>
+                    <a class="addcal__item" id="gcalLink" target="_blank" rel="noopener">Adaugă în Google Calendar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIE -->
+    <section id="galerie">
+        <h2 class="reveal">Galeria Noastră</h2>
+        <div class="section-divider"></div>
+        <p class="reveal">Momente speciale din povestea noastră de dragoste.</p>
+
+        <div class="gallery-grid">
+            <img class="reveal" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600" alt="Foto cuplu 1">
+            <img class="reveal" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" alt="Foto cuplu 2">
+            <img class="reveal" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="Foto cuplu 3">
+            <img class="reveal" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600" alt="Foto cuplu 4">
+            <img class="reveal" src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=600" alt="Foto cuplu 5">
+            <img class="reveal" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600" alt="Foto cuplu 6">
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <div class="rsvp-section" id="rsvp">
+        <section style="padding: 0;">
+            <h2 class="reveal">Confirmă Prezența</h2>
+            <div class="section-divider"></div>
+            <p class="reveal">Vă rugăm să confirmați prezența până la data de <strong>1 Iunie 2027</strong>.</p>
+
+            <form class="rsvp-form reveal" id="rsvpForm">
+                <input type="text" placeholder="Numele complet" required>
+                <input type="email" placeholder="Adresa de email" required>
+                <input type="tel" placeholder="Număr de telefon">
+                <select required>
+                    <option value="" disabled selected>Vei participa?</option>
+                    <option value="da">Da, cu bucurie! 🎉</option>
+                    <option value="nu">Din păcate, nu pot 😢</option>
+                </select>
+                <select>
+                    <option value="" disabled selected>Număr de persoane</option>
+                    <option value="1">1 persoană</option>
+                    <option value="2">2 persoane</option>
+                    <option value="3">3 persoane</option>
+                    <option value="4">4 persoane</option>
+                </select>
+                <textarea rows="4" placeholder="Mesaj pentru Elena și Alexandru (opțional)"></textarea>
+                <button type="submit" class="btn btn--submit glow">Trimite Confirmarea</button>
+            </form>
+            <div class="rsvp-success" id="rsvpSuccess">
+                ✅ Mulțumim pentru confirmare! Elena și Alexandru abia așteaptă să vă revadă! 💕
+            </div>
+        </section>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button id="toTop" class="toTop" aria-label="Înapoi sus" title="Înapoi sus">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor"/></svg>
+    </button>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="couple-names">Elena & Alexandru</div>
+        <div class="hearts">💕</div>
+        <p>24 Iulie 2027 · Iași, România</p>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #666;">Made with ❤️</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ===== COUNTDOWN TIMER =====
+        const weddingDate = new Date('July 24, 2027 15:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance > 0) {
+                document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').textContent = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ===== SMOOTH SCROLLING =====
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const id = this.getAttribute('href');
+                if (id && id.length > 1 && document.querySelector(id)) {
+                    e.preventDefault();
+                    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ===== SCROLL REVEAL =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ===== RSVP FORM =====
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('rsvpSuccess').style.display = 'block';
+            launchConfetti();
+        });
+
+        // ===== BACK TO TOP =====
+        const toTopBtn = document.getElementById('toTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                toTopBtn.classList.add('show');
+            } else {
+                toTopBtn.classList.remove('show');
+            }
+        });
+
+        toTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== CONFETTI =====
+        function launchConfetti() {
+            if (document.querySelectorAll('.confetti-piece').length > 20) return;
+            const count = window.innerWidth <= 768 ? 20 : 40;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'confetti-piece';
+                p.style.left = (30 + Math.random() * 40) + '%';
+                p.style.top = (window.scrollY + window.innerHeight * 0.4) + 'px';
+                p.style.position = 'absolute';
+                p.style.backgroundColor = ['#CBAE7A', '#A98A59', '#ff6699', '#66ccff', '#99ff66'][Math.floor(Math.random() * 5)];
+                p.style.animationDuration = (0.8 + Math.random()) + 's';
+                p.style.setProperty('--drift', ((Math.random() - 0.5) * 80) + 'px');
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 1500);
+            }
+        }
+
+        document.querySelectorAll('.btn--confirm, .btn--primary').forEach(btn => {
+            btn.addEventListener('click', launchConfetti);
+        });
+
+        // ===== CALENDAR =====
+        const btnCal = document.getElementById('btnCal');
+        const calMenu = document.getElementById('calMenu');
+
+        if (btnCal && calMenu) {
+            btnCal.addEventListener('click', () => {
+                calMenu.hidden ? calMenu.removeAttribute('hidden') : calMenu.setAttribute('hidden', '');
+            });
+            document.addEventListener('click', (e) => {
+                if (!calMenu.contains(e.target) && e.target !== btnCal) calMenu.setAttribute('hidden', '');
+            });
+        }
+
+        // Google Calendar link
+        const gcalLink = document.getElementById('gcalLink');
+        if (gcalLink) {
+            const gStart = new Date('2027-07-24T15:00:00');
+            const gEnd = new Date('2027-07-25T04:00:00');
+            const fmt = (d) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+            const params = new URLSearchParams({
+                action: 'TEMPLATE',
+                text: 'Nunta – Elena & Alexandru',
+                dates: `${fmt(gStart)}/${fmt(gEnd)}`,
+                details: 'Ceremonia religioasă: 15:00 — Biserica Banu, Strada Lăpușneanu, Iași\nPetrecerea: 19:00 — Hotel Unirea, Sala Cuza, Iași',
+                location: 'Iași, România'
+            });
+            gcalLink.href = `https://calendar.google.com/calendar/render?${params.toString()}`;
+        }
+
+        // ICS download
+        const dlICS = document.getElementById('dlICS');
+        if (dlICS) {
+            dlICS.addEventListener('click', () => {
+                const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+                const ics = [
+                    'BEGIN:VCALENDAR',
+                    'VERSION:2.0',
+                    'PRODID:-//Elena & Alexandru//Invitație Nuntă//RO',
+                    'BEGIN:VEVENT',
+                    `UID:nunta-${stamp}@elena-alexandru`,
+                    `DTSTAMP:${stamp}`,
+                    'DTSTART:20270724T120000Z',
+                    'DTEND:20270725T010000Z',
+                    'SUMMARY:Nunta – Elena & Alexandru',
+                    'DESCRIPTION:Ceremonia religioasă: 15:00 — Biserica Banu\\, Strada Lăpușneanu\\, Iași\\nPetrecerea: 19:00 — Hotel Unirea\\, Sala Cuza\\, Iași',
+                    'LOCATION:Iași\\, România',
+                    'END:VEVENT',
+                    'END:VCALENDAR'
+                ].join('\n');
+
+                const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Nunta-Elena-Alexandru.ics';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+            });
+        }
+    </script>
+
+</body>
+</html>
+
             color: #333;
             background-color: #fdfbf7;
         }
