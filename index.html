@@ -900,22 +900,22 @@
             <p class="reveal">Vă rugăm să confirmați prezența până la data de <strong>1 Iunie 2027</strong>.</p>
 
             <form class="rsvp-form reveal" id="rsvpForm">
-                <input type="text" placeholder="Numele complet" required>
-                <input type="email" placeholder="Adresa de email" required>
-                <input type="tel" placeholder="Număr de telefon">
-                <select required>
+                <input type="text" name="nume" placeholder="Numele complet" required>
+                <input type="email" name="email" placeholder="Adresa de email" required>
+                <input type="tel" name="telefon" placeholder="Număr de telefon">
+                <select name="participa" required>
                     <option value="" disabled selected>Vei participa?</option>
                     <option value="da">Da, cu bucurie! 🎉</option>
                     <option value="nu">Din păcate, nu pot 😢</option>
                 </select>
-                <select>
+                <select name="persoane">
                     <option value="" disabled selected>Număr de persoane</option>
                     <option value="1">1 persoană</option>
                     <option value="2">2 persoane</option>
                     <option value="3">3 persoane</option>
                     <option value="4">4 persoane</option>
                 </select>
-                <textarea rows="4" placeholder="Mesaj pentru Elena și Alexandru (opțional)"></textarea>
+                <textarea name="mesaj" rows="4" placeholder="Mesaj pentru Elena și Alexandru (opțional)"></textarea>
                 <button type="submit" class="btn btn--submit glow">Trimite Confirmarea</button>
             </form>
             <div class="rsvp-success" id="rsvpSuccess">
@@ -981,11 +981,31 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // ===== RSVP FORM =====
+        // Inlocuieste cu URL-ul primit de la Google Apps Script (Deploy > Web app)
+        const RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxf_HAllQF5C0x7LFtYpfvw4qZ5gVMBiD7o9ds_squ6PAyfxNMm_-RwSsinfE2CILQs/exec';
+
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            this.style.display = 'none';
-            document.getElementById('rsvpSuccess').style.display = 'block';
-            launchConfetti();
+            const form = this;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Se trimite...';
+
+            fetch(RSVP_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: new FormData(form)
+            })
+            .then(() => {
+                form.style.display = 'none';
+                document.getElementById('rsvpSuccess').style.display = 'block';
+                launchConfetti();
+            })
+            .catch(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Trimite Confirmarea';
+                alert('A aparut o eroare. Te rugam sa incerci din nou.');
+            });
         });
 
         // ===== BACK TO TOP =====
