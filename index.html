@@ -1007,6 +1007,20 @@
             field.addEventListener('input', function() { this.setCustomValidity(''); });
         });
 
+        // Daca participantul alege "nu", blocheaza selectarea numarului de persoane
+        const participaSelect = rsvpFormEl.querySelector('select[name="participa"]');
+        const persoaneSelect = rsvpFormEl.querySelector('select[name="persoane"]');
+        participaSelect.addEventListener('change', function() {
+            if (this.value === 'nu') {
+                persoaneSelect.value = '';
+                persoaneSelect.disabled = true;
+                persoaneSelect.required = false;
+            } else {
+                persoaneSelect.disabled = false;
+                persoaneSelect.required = true;
+            }
+        });
+
         rsvpFormEl.addEventListener('submit', function(e) {
             e.preventDefault();
             const form = this;
