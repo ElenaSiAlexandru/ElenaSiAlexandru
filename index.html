@@ -898,20 +898,21 @@
             <h2 class="reveal">Confirmă Prezența</h2>
             <div class="section-divider"></div>
             <p class="reveal">Vă rugăm să confirmați prezența până la data de <strong>1 Iunie 2027</strong>.</p>
+            <p class="reveal" style="font-size: 0.95rem; color: #888; margin-top: 10px;">Câmpurile marcate cu <span style="color: #c0392b;">*</span> sunt obligatorii. Adresa de email și mesajul sunt opționale.</p>
 
             <form class="rsvp-form reveal" id="rsvpForm">
-                <input type="text" name="nume" placeholder="Numele complet" required>
-                <input type="email" name="email" placeholder="Adresa de email">
-                <input type="tel" name="telefon" placeholder="Număr de telefon (10 cifre)" required
+                <input type="text" name="nume" placeholder="Numele complet *" required>
+                <input type="email" name="email" placeholder="Adresa de email (opțional)">
+                <input type="tel" name="telefon" placeholder="Număr de telefon (10 cifre) *" required
                        pattern="0[0-9]{9}" maxlength="10" inputmode="numeric"
                        title="Introdu un număr de telefon valid, format din 10 cifre (ex: 0712345678)">
                 <select name="participa" required>
-                    <option value="" disabled selected>Vei participa?</option>
+                    <option value="" disabled selected>Vei participa? *</option>
                     <option value="da">Da, cu bucurie! 🎉</option>
                     <option value="nu">Din păcate, nu pot 😢</option>
                 </select>
                 <select name="persoane" required>
-                    <option value="" disabled selected>Număr de persoane</option>
+                    <option value="" disabled selected>Număr de persoane *</option>
                     <option value="1">1 persoană</option>
                     <option value="2">2 persoane</option>
                     <option value="3">3 persoane</option>
