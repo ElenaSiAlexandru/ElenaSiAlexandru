@@ -986,7 +986,28 @@
         // Inlocuieste cu URL-ul primit de la Google Apps Script (Deploy > Web app)
         const RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzE0y0nfkbURFsvcvOntLI_x-5aSf24anae66YPMLAD8u2G8MBHL1nr93ZosKv-Kv9l/exec';
 
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        // Mesaje de validare in limba romana (inlocuiesc mesajele implicite ale browserului)
+        const rsvpFormEl = document.getElementById('rsvpForm');
+        rsvpFormEl.querySelectorAll('input, select, textarea').forEach(field => {
+            field.addEventListener('invalid', function() {
+                if (this.validity.valueMissing) {
+                    if (this.tagName === 'SELECT') {
+                        this.setCustomValidity('Te rugăm să selectezi o opțiune.');
+                    } else {
+                        this.setCustomValidity('Te rugăm să completezi acest câmp.');
+                    }
+                } else if (this.validity.typeMismatch && this.type === 'email') {
+                    this.setCustomValidity('Te rugăm să introduci o adresă de email validă.');
+                } else if (this.validity.patternMismatch && this.name === 'telefon') {
+                    this.setCustomValidity('Introdu un număr de telefon valid, format din 10 cifre (ex: 0712345678).');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+            field.addEventListener('input', function() { this.setCustomValidity(''); });
+        });
+
+        rsvpFormEl.addEventListener('submit', function(e) {
             e.preventDefault();
             const form = this;
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -1006,7 +1027,7 @@
             .catch(() => {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Trimite Confirmarea';
-                alert('A aparut o eroare. Te rugam sa incerci din nou.');
+                alert('A apărut o eroare. Te rugăm să încerci din nou.');
             });
         });
 
