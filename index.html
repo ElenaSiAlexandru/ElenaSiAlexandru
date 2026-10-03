@@ -902,7 +902,9 @@
             <form class="rsvp-form reveal" id="rsvpForm">
                 <input type="text" name="nume" placeholder="Numele complet" required>
                 <input type="email" name="email" placeholder="Adresa de email">
-                <input type="tel" name="telefon" placeholder="Număr de telefon" required>
+                <input type="tel" name="telefon" placeholder="Număr de telefon (10 cifre)" required
+                       pattern="0[0-9]{9}" maxlength="10" inputmode="numeric"
+                       title="Introdu un număr de telefon valid, format din 10 cifre (ex: 0712345678)">
                 <select name="participa" required>
                     <option value="" disabled selected>Vei participa?</option>
                     <option value="da">Da, cu bucurie! 🎉</option>
@@ -982,7 +984,7 @@
 
         // ===== RSVP FORM =====
         // Inlocuieste cu URL-ul primit de la Google Apps Script (Deploy > Web app)
-        const RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxf_HAllQF5C0x7LFtYpfvw4qZ5gVMBiD7o9ds_squ6PAyfxNMm_-RwSsinfE2CILQs/exec';
+        const RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzE0y0nfkbURFsvcvOntLI_x-5aSf24anae66YPMLAD8u2G8MBHL1nr93ZosKv-Kv9l/exec';
 
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
