@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="600" viewBox="0 0 320 300" role="img" aria-label="Scan me - Nunta Elena și Alexandru">
+  <!-- Card -->
+  <rect x="6" y="6" width="308" height="288" rx="28" fill="#ffffff" stroke="#ececec" stroke-width="2"/>
+
+  <!-- Tag frame with downward tail -->
+  <path d="M88,34 H232 Q256,34 256,58 V150 Q256,174 232,174 H186 L160,200 L134,174 H88 Q64,174 64,150 V58 Q64,34 88,34 Z"
+        fill="#ffffff" stroke="#111111" stroke-width="6" stroke-linejoin="round"/>
+
+  <!-- QR code -->
+  <image x="86" y="56" width="148" height="96" preserveAspectRatio="xMidYMid meet"
+         href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAMgAQMAAADhvpQrAAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADdklEQVR4nO3dTW7jOBAGUAZeeJkj6Cg+mnw0HcVHmGUvgmicJkGqJNqJGkFHM3jfJjH/HpcFouKk9Dcyzv1c83QbuKV0uv+Y6rZ/8m9Dnp7ydC/vEAgEAoFAIBDIfqSsbjll5LxY9vuwt/uPy/qI23pbzACBQCAQCAQCgRwbaZumsDqc95bHCl623ZGXsG1zNwgEAoFAIBAI5BuRj9VpmcXD7336tTcNgUAgEAgEAoH8H5CWj4r6Vj8tCu58yvZuEAgEAoFAIBDIdyAhsRZ+ratj+8KjbTEQCAQCgUAgEMiBkW6eIL9SWtTpt9Aj0QsEAoFAIBAIBLIX+SSbZRHJ+JyRPw4EAoFAIBAIBPITyDivMq0r53jYnJGUW3nbHS65Hh/zdN5WWysgEAgEAoFAIJB9SMvQW51TVp/mZc3bkG02p0IgEAgEAoFAIIdDxtrsEHPt9Eg8Ouwlf3hLjwKBQCAQCAQCgexD8ilz+kot3L3bZrz/LgyBQCAQCAQCgRwNuY/Oa+ST/Ap36yYvrK/OEAgEAoFAIBDIPiSte3Ib3q+c63R8Tp5CB3BbWK4OgUAgEAgEAoEcEUlhdcl1/V8gWs69wy71OXl+sA0CgUAgEAgEAvkyMtbVQ30XfgvjJUMev9Q7bLKphZ+2L0AgEAgEAoFAID+MpM678Kmd0sYbEnskhrxkCl44DgKBQCAQCAQC2YuMuQ8h5yWsLu+/sX2hIOP8NPkO5W7vEAgEAoFAIBDIgZE8V96FP3LNZ7bxIf86ZbxN3/Id5rrtHJDfgUAgEAgEAoFA/hS55YFL+JKwuZbKQ3gXHh+U0GP3u8UgEAgEAoFAIJBDI3OtkEtP7mZ1HC89EikU3CUpdl5AIBAIBAKBQCD7kCc5h9UFmToLX8L4eS1CIBAIBAKBQCCHRMb1UMl12cq7xa/105BXTfWv4Rqy7JGAQCAQCAQCgUD2IZtTTuGU11AyX5bvxaldagp3yL+t2xcgEAgEAoFAIJADImH1onJuyLD+wtzPeyT6fzsHgUAgEAgEAoF8A5IWRW1abCuJ4yV5qtztHQKBQCAQCAQC+c8iKdWCO4XeifnT3MqVIBAIBAKBQCCQ/UhIFym51O0FudV34fLdYm36Kz0SEAgEAoFAIBDIDyLdXGth/SypPPzWjHV81SMBgUAgEAgEAoEcDfkb+RfarNsCl9Q3rwAAAABJRU5ErkJggg=="/>
+
+  <!-- Globe icon -->
+  <g transform="translate(56,235)" fill="none" stroke="#111111" stroke-width="2.4">
+    <circle cx="10" cy="10" r="10"/>
+    <ellipse cx="10" cy="10" rx="4.2" ry="10"/>
+    <line x1="0" y1="10" x2="20" y2="10"/>
+    <line x1="2" y1="4" x2="18" y2="4"/>
+    <line x1="2" y1="16" x2="18" y2="16"/>
+  </g>
+
+  <!-- Text -->
+  <text x="174" y="251" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="1.5" fill="#111111">SCANEAZĂ-MĂ</text>
+</svg>
