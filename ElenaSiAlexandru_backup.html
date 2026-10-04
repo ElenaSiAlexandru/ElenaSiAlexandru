@@ -772,19 +772,19 @@
                 <div class="family-card">
                     <div class="icon">👰</div>
                     <div class="role">Părinții Miresei</div>
-                    <h3>Fănica & Catrina</h3>
+                    <h3>Catrina & Fănica</h3>
                     <p>Părinții care au crescut-o pe Elena cu dragoste și devotament.</p>
                 </div>
                 <div class="family-card">
                     <div class="icon">🤵</div>
                     <div class="role">Părinții Mirelui</div>
-                    <h3>Ionel & Gabriela</h3>
+                    <h3>Gabriela & Ionel</h3>
                     <p>Părinții care l-au crescut pe Alexandru cu grijă și înțelepciune.</p>
                 </div>
                 <div class="family-card">
-                    <div class="icon">💒</div>
+                    <div class="icon">👫</div>
                     <div class="role">Nașii</div>
-                    <h3>Anca & Valentin</h3>
+                    <h3>Ana-Maria & Valentin</h3>
                     <p>Nașii noștri, cei care ne vor fi alături și ne vor ghida pașii. ✨</p>
                 </div>
             </div>
@@ -898,24 +898,27 @@
             <h2 class="reveal">Confirmă Prezența</h2>
             <div class="section-divider"></div>
             <p class="reveal">Vă rugăm să confirmați prezența până la data de <strong>1 Iunie 2027</strong>.</p>
+            <p class="reveal" style="font-size: 0.95rem; color: #888; margin-top: 10px;">Câmpurile marcate cu <span style="color: #c0392b;">*</span> sunt obligatorii. Adresa de email și mesajul sunt opționale.</p>
 
             <form class="rsvp-form reveal" id="rsvpForm">
-                <input type="text" placeholder="Numele complet" required>
-                <input type="email" placeholder="Adresa de email" required>
-                <input type="tel" placeholder="Număr de telefon">
-                <select required>
-                    <option value="" disabled selected>Vei participa?</option>
+                <input type="text" name="nume" placeholder="Numele complet *" required>
+                <input type="email" name="email" placeholder="Adresa de email (opțional)">
+                <input type="tel" name="telefon" placeholder="Număr de telefon (10 cifre) *" required
+                       pattern="0[0-9]{9}" maxlength="10" inputmode="numeric"
+                       title="Introdu un număr de telefon valid, format din 10 cifre (ex: 0712345678)">
+                <select name="participa" required>
+                    <option value="" disabled selected>Vei participa? *</option>
                     <option value="da">Da, cu bucurie! 🎉</option>
-                    <option value="nu">Din păcate, nu pot 😢</option>
+                    <option value="nu">Din păcate, nu pot participa 😢</option>
                 </select>
-                <select>
-                    <option value="" disabled selected>Număr de persoane</option>
+                <select name="persoane" required>
+                    <option value="" disabled selected>Număr de persoane *</option>
                     <option value="1">1 persoană</option>
                     <option value="2">2 persoane</option>
                     <option value="3">3 persoane</option>
                     <option value="4">4 persoane</option>
                 </select>
-                <textarea rows="4" placeholder="Mesaj pentru Elena și Alexandru (opțional)"></textarea>
+                <textarea name="mesaj" rows="4" placeholder="Mesaj pentru Elena și Alexandru (opțional)"></textarea>
                 <button type="submit" class="btn btn--submit glow">Trimite Confirmarea</button>
             </form>
             <div class="rsvp-success" id="rsvpSuccess">
@@ -981,11 +984,66 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // ===== RSVP FORM =====
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        // Inlocuieste cu URL-ul primit de la Google Apps Script (Deploy > Web app)
+        const RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzE0y0nfkbURFsvcvOntLI_x-5aSf24anae66YPMLAD8u2G8MBHL1nr93ZosKv-Kv9l/exec';
+
+        // Mesaje de validare in limba romana (inlocuiesc mesajele implicite ale browserului)
+        const rsvpFormEl = document.getElementById('rsvpForm');
+        rsvpFormEl.querySelectorAll('input, select, textarea').forEach(field => {
+            field.addEventListener('invalid', function() {
+                if (this.validity.valueMissing) {
+                    if (this.tagName === 'SELECT') {
+                        this.setCustomValidity('Te rugăm să selectezi o opțiune.');
+                    } else {
+                        this.setCustomValidity('Te rugăm să completezi acest câmp.');
+                    }
+                } else if (this.validity.typeMismatch && this.type === 'email') {
+                    this.setCustomValidity('Te rugăm să introduci o adresă de email validă.');
+                } else if (this.validity.patternMismatch && this.name === 'telefon') {
+                    this.setCustomValidity('Introdu un număr de telefon valid, format din 10 cifre (ex: 0712345678).');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+            field.addEventListener('input', function() { this.setCustomValidity(''); });
+        });
+
+        // Daca participantul alege "nu", blocheaza selectarea numarului de persoane
+        const participaSelect = rsvpFormEl.querySelector('select[name="participa"]');
+        const persoaneSelect = rsvpFormEl.querySelector('select[name="persoane"]');
+        participaSelect.addEventListener('change', function() {
+            if (this.value === 'nu') {
+                persoaneSelect.value = '';
+                persoaneSelect.disabled = true;
+                persoaneSelect.required = false;
+            } else {
+                persoaneSelect.disabled = false;
+                persoaneSelect.required = true;
+            }
+        });
+
+        rsvpFormEl.addEventListener('submit', function(e) {
             e.preventDefault();
-            this.style.display = 'none';
-            document.getElementById('rsvpSuccess').style.display = 'block';
-            launchConfetti();
+            const form = this;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Se trimite...';
+
+            fetch(RSVP_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: new FormData(form)
+            })
+            .then(() => {
+                form.style.display = 'none';
+                document.getElementById('rsvpSuccess').style.display = 'block';
+                launchConfetti();
+            })
+            .catch(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Trimite Confirmarea';
+                alert('A apărut o eroare. Te rugăm să încerci din nou.');
+            });
         });
 
         // ===== BACK TO TOP =====
